@@ -1,3 +1,4 @@
+This is only for if u are lazy to build by yourself
 FModel - An Unreal Engine Archives Explorer in C#
 ------------------------------------------
 
