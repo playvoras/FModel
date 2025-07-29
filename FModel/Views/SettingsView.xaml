@@ -44,6 +44,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -227,6 +228,11 @@
                     <TextBlock Grid.Row="17" Grid.Column="0" Text="Serialize Inlined Shader Maps" VerticalAlignment="Center" Margin="0 0 0 5" />
                     <CheckBox Grid.Row="17" Grid.Column="2" Content="{Binding IsChecked, RelativeSource={RelativeSource Self}, Converter={x:Static converters:BoolToToggleConverter.Instance}}"
                               IsChecked="{Binding ReadShaderMaps, Source={x:Static local:Settings.UserSettings.Default}, Mode=TwoWay}" Margin="0 5 0 10"/>
+
+                    <TextBlock Grid.Row="18" Grid.Column="0" Text="Max Wwise Bank (.BNK) Prefetch" VerticalAlignment="Center" Margin="0 0 0 5" />
+                    <Slider Grid.Row="18" Grid.Column="2" Grid.ColumnSpan="5" TickPlacement="None" Minimum="0" Maximum="512" Ticks="0,2,4,8,16,32,64,128,256,512"
+                            AutoToolTipPlacement="BottomRight" IsMoveToPointEnabled="True" IsSnapToTickEnabled="True" Margin="0 5 0 5"
+                            Value="{Binding WwiseMaxBnkPrefetch, Source={x:Static local:Settings.UserSettings.Default}, Mode=TwoWay}"/>
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="CreatorTemplate">
@@ -297,6 +303,8 @@
             <DataTemplate x:Key="ModelsTemplate">
                 <Grid adonisExtensions:LayerExtension.Layer="2">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -459,8 +467,8 @@
 
                     <Separator Grid.Row="16" Grid.Column="0" Grid.ColumnSpan="5" Style="{StaticResource CustomSeparator}" />
 
-                    <TextBlock Grid.Row="17" Grid.Column="0" Text="Material Format" VerticalAlignment="Center" Margin="0 0 0 5" />
-                    <ComboBox Grid.Row="17" Grid.Column="2" Grid.ColumnSpan="3" ItemsSource="{Binding SettingsView.MaterialExportFormats}" SelectedItem="{Binding SettingsView.SelectedMaterialExportFormat, Mode=TwoWay}"
+                    <TextBlock Grid.Row="17" Grid.Column="0" Text="Nanite Format" VerticalAlignment="Center" Margin="0 0 0 5" />
+                    <ComboBox Grid.Row="17" Grid.Column="2" Grid.ColumnSpan="3" ItemsSource="{Binding SettingsView.NaniteMeshExportFormats}" SelectedItem="{Binding SettingsView.SelectedNaniteMeshExportFormat, Mode=TwoWay}"
                               DataContext="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Views.SettingsView}}}" Margin="0 0 0 5">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
@@ -469,8 +477,8 @@
                         </ComboBox.ItemTemplate>
                     </ComboBox>
 
-                    <TextBlock Grid.Row="18" Grid.Column="0" Text="Texture Format" VerticalAlignment="Center" Margin="0 0 0 5" />
-                    <ComboBox Grid.Row="18" Grid.Column="2" Grid.ColumnSpan="3" ItemsSource="{Binding SettingsView.TextureExportFormats}" SelectedItem="{Binding SettingsView.SelectedTextureExportFormat, Mode=TwoWay}"
+                    <TextBlock Grid.Row="18" Grid.Column="0" Text="Material Format" VerticalAlignment="Center" Margin="0 0 0 5" />
+                    <ComboBox Grid.Row="18" Grid.Column="2" Grid.ColumnSpan="3" ItemsSource="{Binding SettingsView.MaterialExportFormats}" SelectedItem="{Binding SettingsView.SelectedMaterialExportFormat, Mode=TwoWay}"
                               DataContext="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Views.SettingsView}}}" Margin="0 0 0 5">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
@@ -478,6 +486,21 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
+
+                    <TextBlock Grid.Row="19" Grid.Column="0" Text="Texture Format" VerticalAlignment="Center" Margin="0 0 0 5" />
+                    <ComboBox Grid.Row="19" Grid.Column="2" Grid.ColumnSpan="3" ItemsSource="{Binding SettingsView.TextureExportFormats}" SelectedItem="{Binding SettingsView.SelectedTextureExportFormat, Mode=TwoWay}"
+                              DataContext="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Views.SettingsView}}}" Margin="0 0 0 5">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Converter={x:Static converters:EnumToStringConverter.Instance}}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                    <TextBlock Grid.Row="20" Grid.Column="0" Text="Save HDR Textures as Radiance .hdr" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="20" Grid.Column="2" Grid.ColumnSpan="3" Content="{Binding IsChecked, RelativeSource={RelativeSource Self}, Converter={x:Static converters:BoolToToggleConverter.Instance}}"
+                              IsChecked="{Binding SaveHdrTexturesAsHdr, Source={x:Static local:Settings.UserSettings.Default}, Mode=TwoWay}"
+                              Style="{DynamicResource {x:Static adonisUi:Styles.ToggleSwitch}}" Margin="0 5 0 5"/>
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="KeybindingsTemplate">
